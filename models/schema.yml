@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: silver_screen
+    database: silver_screen
+    schema: public
+    tables: 
+      - name: invoices
+        description: contains raw information on invoices of rentals from the locations.
+      - name: movie_catalog
+        description: contains raw information on the movies screened in 2024 by the locations.
+      - name: nj_001
+        description: contains raw information on ticketing from location 001.
+      - name: nj_002
+        description: contains raw information on ticketing from location 002.
+      - name: nj_003
+        description: contains raw information on ticketing from location 003.
