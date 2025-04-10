@@ -6,18 +6,18 @@ sources:
     schema: public
     tables: 
       - name: invoices
-        description: contains raw information on invoices of rentals from the locations.
+        description: Contains raw information on invoices for rentals from the locations.
       - name: movie_catalog
-        description: contains raw information on the movies screened in 2024 by the locations.
+        description: Contains raw information on the movies screened in 2024 by the locations.
       - name: nj_001
-        description: contains raw information on ticketing from location 001.
+        description: Contains raw information on ticketing from location 001.
       - name: nj_002
-        description: contains raw information on ticketing from location 002.
+        description: Contains raw information on ticketing from location 002.
       - name: nj_003
-        description: contains raw information on ticketing from location 003.
+        description: Contains raw information on ticketing from location 003.
 models:
   - name: movies_clean
-    description: replace null values on genre to 'Unknown'
+    description: Replaces null values in the genre column with 'Unknown'.
     columns:
       - name: movie_id
         tests:
@@ -26,12 +26,11 @@ models:
       - name: genre
         tests:
           - not_null
-  - name: montlhy_aggregation_001.sql
-    description: aggregates ticket sales data from location 001
-     (amount and revenue) per movie at month level.
+  - name: monthly_aggregation_001.sql
+    description: Aggregates ticket sales data from location 001 (amount and revenue) per movie at the month level.
     columns:
       - name: month
-        description: The first day of the month (e.g., 2025-02-01)
+        description: The first day of the month (e.g., 2025-02-01).
         tests:
           - not_null
       - name: movie_id
@@ -41,19 +40,18 @@ models:
               field: <movie_id>
               to: ref('movies_clean')
       - name: total_tickets
-        description: sum of tickets sold per month and movie.
+        description: Sum of tickets sold per month and movie.
         tests:
           - not_null
       - name: total_revenue
-        description: sum of tickets sale per month and movie.
+        description: Sum of ticket sales per month and movie.
         tests:
           - not_null
-  - name: montlhy_aggregation_002.sql
-    description: aggregates ticket sales data from location 002
-     (amount and revenue) per movie at month level.
+  - name: monthly_aggregation_002.sql
+    description: Aggregates ticket sales data from location 002 (amount and revenue) per movie at the month level.
     columns:
       - name: month
-        description: The first day of the month (e.g., 2025-02-01)
+        description: The first day of the month (e.g., 2025-02-01).
         tests:
           - not_null
       - name: movie_id
@@ -63,19 +61,18 @@ models:
               field: <movie_id>
               to: ref('movies_clean')
       - name: total_tickets
-        description: sum of tickets sold per month and movie.
+        description: Sum of tickets sold per month and movie.
         tests:
           - not_null
       - name: total_revenue
-        description: sum of tickets sale per month and movie.
+        description: Sum of ticket sales per month and movie.
         tests:
           - not_null
-  - name: montlhy_aggregation_003.sql
-    description: aggregates ticket sales data from location 003
-     (amount and revenue) per movie at month level.
+  - name: monthly_aggregation_003.sql
+    description: Aggregates ticket sales data from location 003 (amount and revenue) per movie at the month level.
     columns:
       - name: month
-        description: The first day of the month (e.g., 2025-02-01)
+        description: The first day of the month (e.g., 2025-02-01).
         tests:
           - not_null
       - name: movie_id
@@ -85,10 +82,20 @@ models:
               field: <movie_id>
               to: ref('movies_clean')
       - name: total_tickets
-        description: sum of tickets sold per month and movie.
+        description: Sum of tickets sold per month and movie.
         tests:
           - not_null
       - name: total_revenue
-        description: sum of tickets sale per month and movie.
+        description: Sum of ticket sales per month and movie.
         tests:
           - not_null
+  - name: union_locations
+    description: Unifies cleaned and aggregated data at the movie and month level from three locations and adds the location identifier.
+    columns:
+      - name: location_id
+        description: Identifies the location according to the original table.
+        tests:
+          - not_null
+          - relationships:
+              field: <movie_id>
+              to: ref('movies_clean')
