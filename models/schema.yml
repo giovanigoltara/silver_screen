@@ -15,3 +15,80 @@ sources:
         description: contains raw information on ticketing from location 002.
       - name: nj_003
         description: contains raw information on ticketing from location 003.
+models:
+  - name: movies_clean
+    description: replace null values on genre to 'Unknown'
+    columns:
+      - name: movie_id
+        tests:
+          - not_null
+          - unique
+      - name: genre
+        tests:
+          - not_null
+  - name: 001_montlhy_aggregation.sql
+    description: aggregates ticket sales data from location 001
+     (amount and revenue) per movie at month level.
+    columns:
+      - name: month
+        description: The first day of the month (e.g., 2025-02-01)
+        tests:
+          - not_null
+      - name: movie_id
+        tests:
+          - not_null
+          - relationships:
+              field: <movie_id>
+              to: ref('movies_clean')
+      - name: total_tickets
+        description: sum of tickets sold per month and movie.
+        tests:
+          - not_null
+      - name: total_revenue
+        description: sum of tickets sale per month and movie.
+        tests:
+          - not_null
+  - name: 002_montlhy_aggregation.sql
+    description: aggregates ticket sales data from location 002
+     (amount and revenue) per movie at month level.
+    columns:
+      - name: month
+        description: The first day of the month (e.g., 2025-02-01)
+        tests:
+          - not_null
+      - name: movie_id
+        tests:
+          - not_null
+          - relationships:
+              field: <movie_id>
+              to: ref('movies_clean')
+      - name: total_tickets
+        description: sum of tickets sold per month and movie.
+        tests:
+          - not_null
+      - name: total_revenue
+        description: sum of tickets sale per month and movie.
+        tests:
+          - not_null
+  - name: 003_montlhy_aggregation.sql
+    description: aggregates ticket sales data from location 003
+     (amount and revenue) per movie at month level.
+    columns:
+      - name: month
+        description: The first day of the month (e.g., 2025-02-01)
+        tests:
+          - not_null
+      - name: movie_id
+        tests:
+          - not_null
+          - relationships:
+              field: <movie_id>
+              to: ref('movies_clean')
+      - name: total_tickets
+        description: sum of tickets sold per month and movie.
+        tests:
+          - not_null
+      - name: total_revenue
+        description: sum of tickets sale per month and movie.
+        tests:
+          - not_null
