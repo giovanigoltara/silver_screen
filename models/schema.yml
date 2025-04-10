@@ -26,7 +26,7 @@ models:
       - name: genre
         tests:
           - not_null
-  - name: 001_montlhy_aggregation.sql
+  - name: montlhy_aggregation_001.sql
     description: aggregates ticket sales data from location 001
      (amount and revenue) per movie at month level.
     columns:
@@ -48,7 +48,7 @@ models:
         description: sum of tickets sale per month and movie.
         tests:
           - not_null
-  - name: 002_montlhy_aggregation.sql
+  - name: montlhy_aggregation_002.sql
     description: aggregates ticket sales data from location 002
      (amount and revenue) per movie at month level.
     columns:
@@ -70,7 +70,7 @@ models:
         description: sum of tickets sale per month and movie.
         tests:
           - not_null
-  - name: 003_montlhy_aggregation.sql
+  - name: montlhy_aggregation_003.sql
     description: aggregates ticket sales data from location 003
      (amount and revenue) per movie at month level.
     columns:
