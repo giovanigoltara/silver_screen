@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='view') }}
 
 SELECT
     DATE_TRUNC('month', date) AS month,
