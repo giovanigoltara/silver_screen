@@ -1,9 +1,9 @@
-{{ config(materialize='view') }}
+{{ config(materialized='view') }}
 
 SELECT
-    DATE_TRUNC('month', timestamp) AS month,
+    DATE_TRUNC('month', "timestamp") AS month,  
     movie_id,
-    SUM(ticket_amount) AS total_ticktes,
+    SUM(ticket_amount) AS total_tickets,        
     SUM(transaction_total) AS total_revenue
 FROM 
     {{ source('silver_screen', 'nj_001') }}
