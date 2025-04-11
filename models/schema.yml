@@ -26,6 +26,12 @@ models:
       - name: genre
         tests:
           - not_null
+  - name: invoices_clean
+    description: changes caption of location_id to lower.
+    columns:
+      - name: location_id
+        tests:
+        - not_null
   - name: monthly_aggregation_001.sql
     description: Aggregates ticket sales data from location 001 (amount and revenue) per movie at the month level.
     columns:
