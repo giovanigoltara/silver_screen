@@ -4,7 +4,7 @@ SELECT
     movie_id, 
 	invoice_id,
 	month,
-	LOWER(location_id),
+	LOWER(location_id) AS location_id,
 	studio,
 	release_date,
 	weekly_price,
