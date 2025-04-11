@@ -110,8 +110,8 @@ models:
         tests:
           - not_null
           - relationships:
-              field: <movie_id>
               to: ref('movies_clean')
+              field: movie_id             
   - name: final_table
     description: combines all the renting costs, ticket_sales and revenue from 
       three locations, alongside with movies information.
