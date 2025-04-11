@@ -1,3 +1,5 @@
+{{ config(materialized='view') }}
+
 SELECT
     movie_id, 
 	invoice_id,
