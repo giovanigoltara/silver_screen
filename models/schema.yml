@@ -6,7 +6,7 @@ sources:
     schema: public
     tables: 
       - name: invoices
-        description: Contains raw information on invoices for rentals from the locations.
+        description: Contains raw information on invoices for rentals on the locations.
       - name: movie_catalog
         description: Contains raw information on the movies screened in 2024 by the locations.
       - name: nj_001
@@ -90,12 +90,21 @@ models:
         tests:
           - not_null
   - name: union_locations
-    description: Unifies cleaned and aggregated data at the movie and month level from three locations and adds the location identifier.
+    description: Unifies cleaned and aggregated data at the movie and month level from 
+      three locations and adds the location identifier.
     columns:
       - name: location_id
         description: Identifies the location according to the original table.
         tests:
           - not_null
           - relationships:
+              field: <location_id>
+              to: source('silver_scree', 'invoices')
+      - name: movie_id
+        tests:
+          - not_null
+          - relationships:
               field: <movie_id>
               to: ref('movies_clean')
+     
+          
