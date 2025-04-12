@@ -13,4 +13,4 @@ clean-targets:
 
 models:
   final_table:
-    +materialized: view
+    +materialized: table
